@@ -16,10 +16,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -42,11 +38,11 @@ final class Marks {
     /**
     * The generateMarks() function.
     *
-    * @param arrayOfStudents the collection of students
-    * @param arrayOfAssignments the collection of assignments
-    * @return the generated marks
+    * @param arrayOfStud the collection of students
+    * @param arrayOfWork the collection of assignments
     */
-    public static void generateMarks(final ArrayList<String> arrayOfStud, 
+
+    public static void generateMarks(final ArrayList<String> arrayOfStud,
                                        final ArrayList<String> arrayOfWork) {
 
         // this is just a place holder!
@@ -55,26 +51,29 @@ final class Marks {
         final int studQuan = arrayOfStud.size();
         final int workQuan = arrayOfWork.size();
 
-        final ArrayList<ArrayList<String>> table = new ArrayList<ArrayList<String>>();
+        final ArrayList<ArrayList<String>> table =
+                new ArrayList<ArrayList<String>>();
 
         final ArrayList<String> topRow = new ArrayList<String>();
         topRow.add(" ");
-        for (int counter = 0; counter < workQuan; counter ++){
+        for (int counter = 0; counter < workQuan; counter++) {
             topRow.add(arrayOfWork.get(counter));
         }
 
         table.add(topRow);
 
-        for (int studCounter = 0; studCounter < studQuan; studCounter ++) {
+        for (int studCounter = 0; studCounter < studQuan; studCounter++) {
             final ArrayList<String> studRow = new ArrayList<String>();
             studRow.add(arrayOfStud.get(studCounter));
             for (int workCounter = 0; workCounter < workQuan; workCounter++) {
-                  final int mark = (int) Math.floor(random.nextGaussian() * 10 + 75);
-                  studRow.add(String.valueOf(mark));
+                final int mark = (int) Math.floor(random.nextGaussian()
+                                  * 10 + 75);
+                studRow.add(String.valueOf(mark));
             }
             table.add(studRow);
         }
-                // Creates a .csv file.
+
+        // Creates a .csv file.
         final String fileName = "marks.csv";
         final File file = new File(fileName);
 
