@@ -65,7 +65,7 @@ final class Marks {
 
         table.add(topRow);
 
-        for (int studCounter = 0; studQuan < studCounter; studCounter ++) {
+        for (int studCounter = 0; studCounter < studQuan; studCounter ++) {
             final ArrayList<String> studRow = new ArrayList<String>();
             studRow.add(arrayOfStud.get(studCounter));
             for (int workCounter = 0; workCounter < workQuan; workCounter++) {
@@ -74,9 +74,9 @@ final class Marks {
             }
             table.add(studRow);
         }
-
-    final String fileName ="table.csv";
-    final File file = new File(fileName);
+                // Creates a .csv file.
+        final String fileName = "marks.csv";
+        final File file = new File(fileName);
 
         // Writing and formatting it to the file.
         try {
@@ -94,7 +94,12 @@ final class Marks {
         }
     }
 
-        public static void main(final String[] args) {
+    /**
+    * The starting main() function.
+    *
+    * @param args No args will be used
+    */
+    public static void main(final String[] args) {
         final ArrayList<String> listOfStudents = new ArrayList<String>();
         final ArrayList<String> listOfAssignments = new ArrayList<String>();
         final Path studentFilePath = Paths.get(args[0]);
@@ -119,10 +124,14 @@ final class Marks {
             String lineAssignment = null;
             while ((lineAssignment = readerAssignment.readLine()) != null) {
                 listOfAssignments.add(lineAssignment);
+                // System.out.println(lineAssignment);
             }
         } catch (IOException errorCode) {
             System.err.println(errorCode);
         }
+
+        // Output - Formats them into .csv file and
+        // outputs the content of the file
 
         generateMarks(listOfStudents, listOfAssignments);
 
