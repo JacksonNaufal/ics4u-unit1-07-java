@@ -48,20 +48,25 @@ final class Marks {
         // this is just a place holder!
         final Random random = new Random();
 
+        // gets the array size of students and work
         final int studQuan = arrayOfStud.size();
         final int workQuan = arrayOfWork.size();
 
+        // creates the table array
         final ArrayList<ArrayList<String>> table =
                 new ArrayList<ArrayList<String>>();
 
+        // top row of the table
         final ArrayList<String> topRow = new ArrayList<String>();
         topRow.add(" ");
         for (int counter = 0; counter < workQuan; counter++) {
             topRow.add(arrayOfWork.get(counter));
         }
 
+        // adds the top row
         table.add(topRow);
 
+        // calculates the random marks, adds to  table in the student row.
         for (int studCounter = 0; studCounter < studQuan; studCounter++) {
             final ArrayList<String> studRow = new ArrayList<String>();
             studRow.add(arrayOfStud.get(studCounter));
@@ -70,14 +75,16 @@ final class Marks {
                                   * 10 + 75);
                 studRow.add(String.valueOf(mark));
             }
+            // adds to the table
             table.add(studRow);
         }
 
-        // Creates a .csv file.
+        // creating the CSV file
         final String fileName = "marks.csv";
         final File file = new File(fileName);
 
-        // Writing and formatting it to the file.
+        // How the file is made with the fileWriter and joined together, split
+        // each section by a ","
         try {
             final FileWriter fileWriter = new FileWriter(fileName, false);
 
@@ -88,7 +95,7 @@ final class Marks {
             }
             fileWriter.close();
         } catch (IOException error) {
-            System.out.println("An error occured.");
+            System.out.println("How are you here?");
             error.printStackTrace();
         }
     }
@@ -105,19 +112,18 @@ final class Marks {
         final Path assignmentFilePath = Paths.get(args[1]);
         final Charset charset = Charset.forName("UTF-8");
 
-        // Reading the list of students from a text file.
+        // reads in students file.
         try (BufferedReader readerStudent = Files.newBufferedReader(
                                      studentFilePath, charset)) {
             String lineStudent = null;
             while ((lineStudent = readerStudent.readLine()) != null) {
                 listOfStudents.add(lineStudent);
-                // System.out.println(lineStudent);
             }
         } catch (IOException errorCode) {
             System.err.println(errorCode);
         }
 
-        // Reading the list of assignments from a text file.
+        // reads in assignments file
         try (BufferedReader readerAssignment = Files.newBufferedReader(
                                      assignmentFilePath, charset)) {
             String lineAssignment = null;
@@ -129,11 +135,10 @@ final class Marks {
             System.err.println(errorCode);
         }
 
-        // Output - Formats them into .csv file and
-        // outputs the content of the file
-
+        // outputs onto the file
         generateMarks(listOfStudents, listOfAssignments);
 
+        // end of program
         System.out.println("\nDone.");
     }
 }
