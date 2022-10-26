@@ -1,7 +1,7 @@
 
 /*
-* This is a program that calculates mean, median
-* after reading in a text file into an array.
+* This is a program that uses standered deviation
+* and outputs students marks into a CSV file.
 *
 * @author  Jackson Naufal
 * @version 1.0
@@ -129,7 +129,6 @@ final class Marks {
             String lineAssignment = null;
             while ((lineAssignment = readerAssignment.readLine()) != null) {
                 listOfAssignments.add(lineAssignment);
-                // System.out.println(lineAssignment);
             }
         } catch (IOException errorCode) {
             System.err.println(errorCode);
